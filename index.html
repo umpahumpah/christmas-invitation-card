@@ -4,60 +4,32 @@
   <meta charset="UTF-8" />
   <title>Christmas Invitation</title>
 
-  <!-- ✅ 카톡/인스타 등 공유 미리보기 (OG 메타) -->
+  <!-- ✅ 카카오톡/미리보기용 설정 -->
   <meta property="og:title" content="🎄 Christmas Dinner Party Invitation" />
-  <meta property="og:description" content="초대장을 확인해 주세요." />
-  <!-- ↓↓↓ 배포 후 실제 전체 URL로 교체해야 함 -->
-  <meta property="og:url" content="https://YOUR-HOST/SLUG/" />
-  <meta property="og:image" content="https://YOUR-HOST/SLUG/invite.png" />
+  <meta property="og:description" content="초대장을 확인해 주세요!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://umpahumpah.github.io/christmas-invitation-card/" />
+  <meta property="og:image" content="https://umpahumpah.github.io/christmas-invitation-card/invite.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- 검색엔진에 노출 막기 -->
-  <meta name="robots" content="noindex,nofollow" />
+  <!-- ✅ 검색 노출 막기 (원하는 경우) -->
+  <meta name="robots" content="noindex, nofollow" />
 
   <style>
     html, body {
       margin: 0;
       height: 100%;
-      background: #faf7f2;  /* 따뜻한 크림색 배경 */
-      overflow: hidden;      /* 스크롤 감춤 (눈 효과 때문에) */
+      background: #faf7f2;
     }
-    /* 중앙에 이미지 하나만 */
     body {
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    img#invite {
-      max-width: min(100vw, 900px);
+    img {
+      max-width: 100%;
       max-height: 100vh;
-      width: auto; height: auto;
-      display: block;
-      border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0,0,0,.08);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ❄ 눈송이 스타일 */
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      color: white;
-      text-shadow: 0 0 4px rgba(0,0,0,.2);
-      user-select: none;
-      pointer-events: none;
-      animation: fall linear forwards;
-      will-change: transform, opacity;
-      z-index: 0;
-    }
-    @keyframes fall {
-      to { transform: translateY(110vh); opacity: .15; }
-    }
-
-    /* 접근성: 모션 줄이기 설정인 경우 눈 효과 끔 */
-    @media (prefers-reduced-motion: reduce) {
-      .snowflake { display: none !important; }
     }
   </style>
 </head>
@@ -93,3 +65,4 @@
   </script>
 </body>
 </html>
+
