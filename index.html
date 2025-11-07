@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Christmas Invitation</title>
 
-  <!-- ✅ 카카오톡/미리보기용 설정 -->
+  <!-- ✅ 카톡/메신저 미리보기 -->
   <meta property="og:title" content="🎄 Christmas Dinner Party Invitation" />
   <meta property="og:description" content="초대장을 확인해 주세요!" />
   <meta property="og:type" content="website" />
@@ -13,31 +13,60 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
-  <!-- ✅ 검색 노출 막기 (원하는 경우) -->
-  <meta name="robots" content="noindex, nofollow" />
+  <!-- 검색엔진 노출 방지 -->
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    /* 기본 레이아웃 */
     html, body {
       margin: 0;
       height: 100%;
-      background: #faf7f2;
+      background: #faf7f2;   /* 따뜻한 크림색 배경 */
+      overflow: hidden;      /* 눈 효과 때문에 스크롤 숨김 */
     }
     body {
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    img {
-      max-width: 100%;
+    img#invite {
+      max-width: min(100vw, 900px);
       max-height: 100vh;
+      width: auto;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
+      position: relative;
+      z-index: 1; /* 눈보다 위/아래로 조정하려면 값 바꿔도 됨 */
+    }
+
+    /* ❄ 눈송이 스타일 */
+    .snowflake{
+      position: fixed;
+      top: -10px;
+      color: white;
+      text-shadow: 0 0 4px rgba(0,0,0,.2);
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear forwards;
+      will-change: transform, opacity;
+      z-index: 2; /* 이미지 위로 보이게 2 */
+    }
+    @keyframes fall { to { transform: translateY(110vh); opacity: .15; } }
+
+    /* 접근성: 모션 줄이기 설정이면 눈 숨김 */
+    @media (prefers-reduced-motion: reduce) {
+      .snowflake { display: none !important; }
     }
   </style>
 </head>
 <body>
-  <!-- 화면에 딱 보일 초대장 이미지 -->
+  <!-- 화면에 보일 초대장 이미지 -->
   <img id="invite" src="./invite.png" alt="Invitation" />
 
-  <!-- ❄ 눈 효과 스크립트 (가벼운 순수 JS) -->
+  <!-- ❄ 눈 효과 스크립트 -->
   <script>
     (function () {
       const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -58,11 +87,10 @@
         setTimeout(() => el.remove(), 8000);
       }
 
-      // 초기에 몇 개 뿌려주고, 이후 일정 간격으로 생성
+      // 초기에 여러 개, 이후 주기적으로 생성
       for (let i = 0; i < 40; i++) setTimeout(flake, Math.random() * 1200);
-      setInterval(flake, 180);
+      setInterval(flake, 180);   // 숫자 ↓ 눈 더 많이 / ↑ 눈 덜
     })();
   </script>
 </body>
 </html>
-
